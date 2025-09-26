@@ -1,13 +1,33 @@
 {
   "project_info": {
-    "project_number": "1068973622482",
-    "project_id": "face-attendance-demo-3d793",
-    "storage_bucket": "face-attendance-demo-3d793.firebasestorage.app"
+    "project_number": "455110082147",
+    "firebase_url": "https://attendanceapp-7e74f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "attendanceapp-7e74f",
+    "storage_bucket": "attendanceapp-7e74f.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1068973622482:android:a08bb5a171b25e8429d90b",
+        "mobilesdk_app_id": "1:455110082147:android:b3882687aede96a2220256",
+        "android_client_info": {
+          "package_name": "com.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHT7evMxwjfxpDoF8xZhsCN189M6KznsE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455110082147:android:f5d757e7472eeccc220256",
         "android_client_info": {
           "package_name": "com.example.flutter_application_8"
         }
@@ -15,7 +35,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBSuE7691X900qmi0hB6W7_AgfjGEKbvbY"
+          "current_key": "AIzaSyCHT7evMxwjfxpDoF8xZhsCN189M6KznsE"
         }
       ],
       "services": {

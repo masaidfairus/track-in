@@ -294,7 +294,7 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Attendance History'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromRGBO(56, 56, 150, 1),
         foregroundColor: Colors.white,
         elevation: 2,
         actions: [

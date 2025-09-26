@@ -312,8 +312,8 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         ? 'Check In'
         : 'Check Out';
     Color themeColor = widget.mode == AttendanceMode.checkIn
-        ? Colors.green
-        : Colors.red;
+        ? Color.fromRGBO(56, 56, 150, 1)
+        : Color.fromRGBO(56, 56, 150, 1);
 
     return Scaffold(
       appBar: AppBar(

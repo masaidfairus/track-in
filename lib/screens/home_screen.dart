@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_8/screens/login_screen.dart';
 import 'attendance_screen.dart';
 import 'attendance_history_screen.dart';
 import 'attendance_summart_screen.dart';
 import '../widgets/daily_summary_widget.dart';
+import '../widgets/daily_attendance_card_widget.dart';
 import '../services/firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'attendance_screen.dart';
@@ -224,19 +226,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Face Attendance System'),
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
-        elevation: 2,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _isReconnecting ? null : _attemptReconnection,
-            tooltip: 'Retry Connection',
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   // title: const Text('Face Attendance System'),
+      //   backgroundColor: Color.fromRGBO(56, 56, 150, 1),
+      //   foregroundColor: Colors.white,
+      //   elevation: 2,
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.refresh),
+      //       onPressed: _isReconnecting ? null : _attemptReconnection,
+      //       tooltip: 'Retry Connection',
+      //     ),
+      //   ],
+      // ),
       body: _isLoading ? _buildLoadingScreen() : _buildMainContent(),
     );
   }
@@ -256,33 +258,73 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildMainContent() {
     return Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(0.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Welcome Card
           Card(
-            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(0),
+            ),
+            margin: EdgeInsets.all(0),
+            color: Color.fromRGBO(56, 56, 150, 1),
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
+              padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+              child: Row(
                 children: [
-                  Icon(Icons.face, size: 64, color: Colors.blue),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Welcome to Face Attendance',
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+                  Align(
+                    alignment:
+                        Alignment.centerLeft, // Aligns text to the center
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Good Morning',
+                          style: TextStyle(
+                            color: Color.fromRGBO(245, 245, 253, 1),
+                            fontSize: 18,
+                          ),
+                        ),
+                        const Text(
+                          'Masaid Fairus',
+                          style: TextStyle(
+                            color: Color.fromRGBO(245, 245, 253, 1),
+                            fontSize: 26,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Use facial recognition for quick and secure attendance tracking',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                    textAlign: TextAlign.center,
+                  Spacer(),
+                  FloatingActionButton.small(
+                    onPressed: _isReconnecting ? null : _attemptReconnection,
+                    tooltip: 'Retry Connection',
+                    child: const Icon(Icons.refresh),
                   ),
+                  // const SizedBox(height: 8),
+                  // const Text(
+                  //   'Use facial recognition for quick and secure attendance tracking',
+                  //   style: TextStyle(fontSize: 16, color: Colors.grey),
+                  //   textAlign: TextAlign.center,
+                  // ),
                 ],
               ),
             ),
+          ),
+
+          DailyAttendanceCard(
+            checkInCount: 5, // ambil dari Firestore misalnya
+            checkOutCount: 2, // ambil dari Firestore juga
+            onSeeAll: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const AttendanceHistoryScreen(),
+                ),
+              );
+            },
           ),
 
           ElevatedButton.icon(
@@ -355,11 +397,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
+          const SizedBox(height: 16),
+
+          // Action Buttons
+          ElevatedButton.icon(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            },
+            icon: const Icon(Icons.exit_to_app_rounded),
+            label: const Text('Log Out', style: TextStyle(fontSize: 18)),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.green,
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          ),
+
           const SizedBox(height: 24),
 
           // Enhanced Status Card
           Card(
             elevation: 2,
+            margin: const EdgeInsets.all(16),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(

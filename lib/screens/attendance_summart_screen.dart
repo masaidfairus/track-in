@@ -162,7 +162,7 @@ class _AttendanceSummaryScreenState extends State<AttendanceSummaryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Attendance Summary'),
-        backgroundColor: Colors.purple,
+        backgroundColor: Color.fromRGBO(56, 56, 150, 1),
         foregroundColor: Colors.white,
         actions: [
           IconButton(

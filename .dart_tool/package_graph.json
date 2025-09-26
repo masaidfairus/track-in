@@ -13,8 +13,8 @@
         "firebase_auth",
         "firebase_core",
         "flutter",
+        "google_fonts",
         "google_ml_kit",
-        "google_mlkit_face_detection",
         "intl",
         "path_provider",
         "permission_handler"
@@ -22,6 +22,45 @@
       "devDependencies": [
         "flutter_lints",
         "flutter_test"
+      ]
+    },
+    {
+      "name": "google_mlkit_face_detection",
+      "version": "0.11.1",
+      "dependencies": [
+        "flutter",
+        "google_mlkit_commons"
+      ]
+    },
+    {
+      "name": "google_mlkit_text_recognition",
+      "version": "0.13.1",
+      "dependencies": [
+        "flutter",
+        "google_mlkit_commons"
+      ]
+    },
+    {
+      "name": "google_mlkit_barcode_scanning",
+      "version": "0.11.1",
+      "dependencies": [
+        "flutter",
+        "google_mlkit_commons"
+      ]
+    },
+    {
+      "name": "google_mlkit_entity_extraction",
+      "version": "0.12.1",
+      "dependencies": [
+        "flutter",
+        "google_mlkit_commons"
+      ]
+    },
+    {
+      "name": "google_mlkit_commons",
+      "version": "0.7.1",
+      "dependencies": [
+        "flutter"
       ]
     },
     {
@@ -35,28 +74,28 @@
       "name": "flutter_test",
       "version": "0.0.0",
       "dependencies": [
-        "async",
-        "boolean_selector",
-        "characters",
         "clock",
         "collection",
         "fake_async",
         "flutter",
-        "leak_tracker",
         "leak_tracker_flutter_testing",
-        "leak_tracker_testing",
         "matcher",
-        "material_color_utilities",
         "meta",
         "path",
-        "source_span",
         "stack_trace",
         "stream_channel",
-        "string_scanner",
-        "term_glyph",
         "test_api",
-        "vector_math",
-        "vm_service"
+        "vector_math"
+      ]
+    },
+    {
+      "name": "google_fonts",
+      "version": "6.3.2",
+      "dependencies": [
+        "crypto",
+        "flutter",
+        "http",
+        "path_provider"
       ]
     },
     {
@@ -81,16 +120,8 @@
       ]
     },
     {
-      "name": "google_mlkit_face_detection",
-      "version": "0.7.0",
-      "dependencies": [
-        "flutter",
-        "google_mlkit_commons"
-      ]
-    },
-    {
       "name": "google_ml_kit",
-      "version": "0.15.0",
+      "version": "0.18.1",
       "dependencies": [
         "flutter",
         "google_mlkit_barcode_scanning",
@@ -98,6 +129,7 @@
         "google_mlkit_digital_ink_recognition",
         "google_mlkit_entity_extraction",
         "google_mlkit_face_detection",
+        "google_mlkit_face_mesh_detection",
         "google_mlkit_image_labeling",
         "google_mlkit_language_id",
         "google_mlkit_object_detection",
@@ -135,7 +167,7 @@
     },
     {
       "name": "cloud_firestore",
-      "version": "4.17.5",
+      "version": "5.6.12",
       "dependencies": [
         "cloud_firestore_platform_interface",
         "cloud_firestore_web",
@@ -148,7 +180,7 @@
     },
     {
       "name": "firebase_auth",
-      "version": "4.16.0",
+      "version": "5.7.0",
       "dependencies": [
         "firebase_auth_platform_interface",
         "firebase_auth_web",
@@ -160,7 +192,7 @@
     },
     {
       "name": "firebase_core",
-      "version": "2.32.0",
+      "version": "3.15.2",
       "dependencies": [
         "firebase_core_platform_interface",
         "firebase_core_web",
@@ -191,36 +223,10 @@
       "dependencies": []
     },
     {
-      "name": "vm_service",
-      "version": "15.0.0",
-      "dependencies": []
-    },
-    {
-      "name": "term_glyph",
-      "version": "1.2.2",
-      "dependencies": []
-    },
-    {
-      "name": "string_scanner",
-      "version": "1.4.1",
-      "dependencies": [
-        "source_span"
-      ]
-    },
-    {
       "name": "stream_channel",
       "version": "2.1.4",
       "dependencies": [
         "async"
-      ]
-    },
-    {
-      "name": "source_span",
-      "version": "1.10.1",
-      "dependencies": [
-        "collection",
-        "path",
-        "term_glyph"
       ]
     },
     {
@@ -229,61 +235,13 @@
       "dependencies": []
     },
     {
-      "name": "material_color_utilities",
-      "version": "0.11.1",
-      "dependencies": [
-        "collection"
-      ]
-    },
-    {
-      "name": "leak_tracker_testing",
-      "version": "3.0.1",
-      "dependencies": [
-        "leak_tracker",
-        "matcher",
-        "meta"
-      ]
-    },
-    {
-      "name": "leak_tracker",
-      "version": "10.0.9",
-      "dependencies": [
-        "clock",
-        "collection",
-        "meta",
-        "path",
-        "vm_service"
-      ]
-    },
-    {
       "name": "collection",
       "version": "1.19.1",
       "dependencies": []
     },
     {
-      "name": "characters",
-      "version": "1.4.0",
-      "dependencies": []
-    },
-    {
-      "name": "boolean_selector",
-      "version": "2.1.2",
-      "dependencies": [
-        "source_span",
-        "string_scanner"
-      ]
-    },
-    {
-      "name": "async",
-      "version": "2.13.0",
-      "dependencies": [
-        "collection",
-        "meta"
-      ]
-    },
-    {
       "name": "leak_tracker_flutter_testing",
-      "version": "3.0.9",
+      "version": "3.0.10",
       "dependencies": [
         "flutter",
         "leak_tracker",
@@ -294,7 +252,7 @@
     },
     {
       "name": "vector_math",
-      "version": "2.1.4",
+      "version": "2.2.0",
       "dependencies": []
     },
     {
@@ -335,7 +293,7 @@
     },
     {
       "name": "test_api",
-      "version": "0.7.4",
+      "version": "0.7.6",
       "dependencies": [
         "async",
         "boolean_selector",
@@ -346,6 +304,23 @@
         "stream_channel",
         "string_scanner",
         "term_glyph"
+      ]
+    },
+    {
+      "name": "http",
+      "version": "1.5.0",
+      "dependencies": [
+        "async",
+        "http_parser",
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "crypto",
+      "version": "3.0.6",
+      "dependencies": [
+        "typed_data"
       ]
     },
     {
@@ -395,22 +370,15 @@
       ]
     },
     {
-      "name": "google_mlkit_commons",
-      "version": "0.4.0",
-      "dependencies": [
-        "flutter"
-      ]
-    },
-    {
       "name": "google_mlkit_smart_reply",
-      "version": "0.7.0",
+      "version": "0.11.1",
       "dependencies": [
         "flutter"
       ]
     },
     {
       "name": "google_mlkit_translation",
-      "version": "0.7.0",
+      "version": "0.11.1",
       "dependencies": [
         "flutter",
         "google_mlkit_commons"
@@ -418,30 +386,14 @@
     },
     {
       "name": "google_mlkit_language_id",
-      "version": "0.7.0",
+      "version": "0.11.1",
       "dependencies": [
         "flutter"
       ]
     },
     {
-      "name": "google_mlkit_entity_extraction",
-      "version": "0.8.0",
-      "dependencies": [
-        "flutter",
-        "google_mlkit_commons"
-      ]
-    },
-    {
-      "name": "google_mlkit_text_recognition",
-      "version": "0.7.0",
-      "dependencies": [
-        "flutter",
-        "google_mlkit_commons"
-      ]
-    },
-    {
       "name": "google_mlkit_selfie_segmentation",
-      "version": "0.4.0",
+      "version": "0.8.1",
       "dependencies": [
         "flutter",
         "google_mlkit_commons"
@@ -449,7 +401,7 @@
     },
     {
       "name": "google_mlkit_pose_detection",
-      "version": "0.7.0",
+      "version": "0.12.1",
       "dependencies": [
         "flutter",
         "google_mlkit_commons"
@@ -457,7 +409,7 @@
     },
     {
       "name": "google_mlkit_object_detection",
-      "version": "0.8.0",
+      "version": "0.13.1",
       "dependencies": [
         "flutter",
         "google_mlkit_commons"
@@ -465,7 +417,15 @@
     },
     {
       "name": "google_mlkit_image_labeling",
-      "version": "0.7.0",
+      "version": "0.12.1",
+      "dependencies": [
+        "flutter",
+        "google_mlkit_commons"
+      ]
+    },
+    {
+      "name": "google_mlkit_face_mesh_detection",
+      "version": "0.2.1",
       "dependencies": [
         "flutter",
         "google_mlkit_commons"
@@ -473,15 +433,7 @@
     },
     {
       "name": "google_mlkit_digital_ink_recognition",
-      "version": "0.8.0",
-      "dependencies": [
-        "flutter",
-        "google_mlkit_commons"
-      ]
-    },
-    {
-      "name": "google_mlkit_barcode_scanning",
-      "version": "0.7.0",
+      "version": "0.12.1",
       "dependencies": [
         "flutter",
         "google_mlkit_commons"
@@ -579,7 +531,7 @@
     },
     {
       "name": "firebase_core_platform_interface",
-      "version": "5.4.2",
+      "version": "6.0.0",
       "dependencies": [
         "collection",
         "flutter",
@@ -590,7 +542,7 @@
     },
     {
       "name": "cloud_firestore_web",
-      "version": "3.12.5",
+      "version": "4.4.12",
       "dependencies": [
         "_flutterfire_internals",
         "cloud_firestore_platform_interface",
@@ -603,7 +555,7 @@
     },
     {
       "name": "cloud_firestore_platform_interface",
-      "version": "6.2.5",
+      "version": "6.6.12",
       "dependencies": [
         "_flutterfire_internals",
         "collection",
@@ -615,7 +567,7 @@
     },
     {
       "name": "firebase_auth_web",
-      "version": "5.8.13",
+      "version": "5.15.3",
       "dependencies": [
         "firebase_auth_platform_interface",
         "firebase_core",
@@ -623,13 +575,13 @@
         "flutter",
         "flutter_web_plugins",
         "http_parser",
-        "js",
-        "meta"
+        "meta",
+        "web"
       ]
     },
     {
       "name": "firebase_auth_platform_interface",
-      "version": "7.3.0",
+      "version": "7.7.3",
       "dependencies": [
         "_flutterfire_internals",
         "collection",
@@ -641,7 +593,7 @@
     },
     {
       "name": "firebase_core_web",
-      "version": "2.24.0",
+      "version": "2.24.1",
       "dependencies": [
         "firebase_core_platform_interface",
         "flutter",
@@ -654,6 +606,97 @@
       "name": "sky_engine",
       "version": "0.0.0",
       "dependencies": []
+    },
+    {
+      "name": "material_color_utilities",
+      "version": "0.11.1",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "characters",
+      "version": "1.4.0",
+      "dependencies": []
+    },
+    {
+      "name": "async",
+      "version": "2.13.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
+      "name": "leak_tracker_testing",
+      "version": "3.0.2",
+      "dependencies": [
+        "leak_tracker",
+        "matcher",
+        "meta"
+      ]
+    },
+    {
+      "name": "leak_tracker",
+      "version": "11.0.2",
+      "dependencies": [
+        "clock",
+        "collection",
+        "meta",
+        "path",
+        "vm_service"
+      ]
+    },
+    {
+      "name": "term_glyph",
+      "version": "1.2.2",
+      "dependencies": []
+    },
+    {
+      "name": "string_scanner",
+      "version": "1.4.1",
+      "dependencies": [
+        "source_span"
+      ]
+    },
+    {
+      "name": "source_span",
+      "version": "1.10.1",
+      "dependencies": [
+        "collection",
+        "path",
+        "term_glyph"
+      ]
+    },
+    {
+      "name": "boolean_selector",
+      "version": "2.1.2",
+      "dependencies": [
+        "source_span",
+        "string_scanner"
+      ]
+    },
+    {
+      "name": "web",
+      "version": "1.1.1",
+      "dependencies": []
+    },
+    {
+      "name": "http_parser",
+      "version": "4.1.2",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner",
+        "typed_data"
+      ]
+    },
+    {
+      "name": "typed_data",
+      "version": "1.4.0",
+      "dependencies": [
+        "collection"
+      ]
     },
     {
       "name": "ffi",
@@ -681,11 +724,6 @@
       ]
     },
     {
-      "name": "web",
-      "version": "1.1.1",
-      "dependencies": []
-    },
-    {
       "name": "stream_transform",
       "version": "2.1.1",
       "dependencies": []
@@ -694,12 +732,7 @@
       "name": "flutter_web_plugins",
       "version": "0.0.0",
       "dependencies": [
-        "characters",
-        "collection",
-        "flutter",
-        "material_color_utilities",
-        "meta",
-        "vector_math"
+        "flutter"
       ]
     },
     {
@@ -712,7 +745,7 @@
     },
     {
       "name": "_flutterfire_internals",
-      "version": "1.3.35",
+      "version": "1.3.59",
       "dependencies": [
         "collection",
         "firebase_core",
@@ -722,28 +755,9 @@
       ]
     },
     {
-      "name": "js",
-      "version": "0.6.7",
-      "dependencies": [
-        "meta"
-      ]
-    },
-    {
-      "name": "http_parser",
-      "version": "4.1.2",
-      "dependencies": [
-        "collection",
-        "source_span",
-        "string_scanner",
-        "typed_data"
-      ]
-    },
-    {
-      "name": "typed_data",
-      "version": "1.4.0",
-      "dependencies": [
-        "collection"
-      ]
+      "name": "vm_service",
+      "version": "15.0.0",
+      "dependencies": []
     }
   ],
   "configVersion": 1

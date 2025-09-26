@@ -1,0 +1,18 @@
+2025/09/25-23:29:25.647 d59f4f Creating DB /private/var/folders/mx/2hgz_k3j1311905hmkjdm9mw0000gn/T/flutter_tools.PnoIAJ/flutter_tools_chrome_device.TwUzDC/Default/IndexedDB/http_localhost_64716.indexeddb.leveldb since it was missing.
+2025/09/25-23:29:25.658 d59f4f Reusing MANIFEST /private/var/folders/mx/2hgz_k3j1311905hmkjdm9mw0000gn/T/flutter_tools.PnoIAJ/flutter_tools_chrome_device.TwUzDC/Default/IndexedDB/http_localhost_64716.indexeddb.leveldb/MANIFEST-000001
+2025/09/25-23:29:25.671 d59f60 Level-0 table #5: started
+2025/09/25-23:29:25.675 d59f60 Level-0 table #5: 1262 bytes OK
+2025/09/25-23:29:25.678 d59f60 Delete type=0 #3
+2025/09/25-23:29:25.679 d59f60 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/09/26-00:15:10.799 d59f4f Level-0 table #7: started
+2025/09/26-00:15:10.813 d59f4f Level-0 table #7: 198771 bytes OK
+2025/09/26-00:15:10.824 d59f4f Delete type=0 #4
+2025/09/26-00:15:10.834 d59f4f Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2025/09/26-00:15:10.835 d59f4f Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x04\x0f \x04\x04\x01\x0a\x00a\x00t\x00t\x00e\x00n\x00d\x00a\x00n\x00c\x00e\x04\x02\x03\x00\x00\x80\x86\5\xdaA\x03\x00\x00\x00\x00B\xbe\x9dA\x04\x00\x01\x0d\x001\x007\x005\x008\x004\x005\x009\x007\x000\x008\x009\x001\x008\x00\x04\x04\x04\x00\x01\x0a\x00a\x00t\x00t\x00e\x00n\x00d\x00a\x00n\x00c\x00e\x04\x02\x03\x00\x00\x80\x86\5\xdaA\x03\x00\x00\x00\x00B\xbe\x9dA\x01\x0d\x001\x007\x005\x008\x004\x005\x009\x007\x000\x008\x009\x001\x008' @ 995 : 1
+2025/09/26-00:15:10.835 d59f4f Compacting 1@1 + 1@2 files
+2025/09/26-00:15:10.843 d59f4f Generated table #8@1: 263 keys, 8956 bytes
+2025/09/26-00:15:10.843 d59f4f Compacted 1@1 + 1@2 files => 8956 bytes
+2025/09/26-00:15:10.844 d59f4f compacted to: files[ 0 0 1 0 0 0 0 ]
+2025/09/26-00:15:10.847 d59f4f Delete type=2 #7
+2025/09/26-00:15:10.847 d59f4f Delete type=2 #5
+2025/09/26-00:15:10.847 d59f4f Manual compaction at level-1 from '\x00\x04\x0f \x04\x04\x01\x0a\x00a\x00t\x00t\x00e\x00n\x00d\x00a\x00n\x00c\x00e\x04\x02\x03\x00\x00\x80\x86\5\xdaA\x03\x00\x00\x00\x00B\xbe\x9dA\x04\x00\x01\x0d\x001\x007\x005\x008\x004\x005\x009\x007\x000\x008\x009\x001\x008\x00\x04\x04\x04\x00\x01\x0a\x00a\x00t\x00t\x00e\x00n\x00d\x00a\x00n\x00c\x00e\x04\x02\x03\x00\x00\x80\x86\5\xdaA\x03\x00\x00\x00\x00B\xbe\x9dA\x01\x0d\x001\x007\x005\x008\x004\x005\x009\x007\x000\x008\x009\x001\x008' @ 995 : 1 .. (end); will stop at (end)
