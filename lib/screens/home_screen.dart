@@ -257,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildMainContent() {
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(0.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -267,56 +267,62 @@ class _HomeScreenState extends State<HomeScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(0),
             ),
-            margin: EdgeInsets.all(0),
+            margin: EdgeInsets.only(bottom: 15),
             color: Color.fromRGBO(56, 56, 150, 1),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
-              child: Row(
+              child: Column(
                 children: [
-                  Align(
-                    alignment:
-                        Alignment.centerLeft, // Aligns text to the center
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Good Morning',
-                          style: TextStyle(
-                            color: Color.fromRGBO(245, 245, 253, 1),
-                            fontSize: 18,
-                          ),
+                  Row(
+                    children: [
+                      Align(
+                        alignment:
+                            Alignment.centerLeft, // Aligns text to the center
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Good Morning',
+                              style: TextStyle(
+                                color: Color.fromRGBO(245, 245, 253, 1),
+                                fontSize: 18,
+                              ),
+                            ),
+                            const Text(
+                              'Masaid Fairus',
+                              style: TextStyle(
+                                color: Color.fromRGBO(245, 245, 253, 1),
+                                fontSize: 26,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ],
                         ),
-                        const Text(
-                          'Masaid Fairus',
-                          style: TextStyle(
-                            color: Color.fromRGBO(245, 245, 253, 1),
-                            fontSize: 26,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ],
-                    ),
+                      ),
+                      Spacer(),
+                      FloatingActionButton.small(
+                        onPressed: _isReconnecting
+                            ? null
+                            : _attemptReconnection,
+                        tooltip: 'Retry Connection',
+                        child: const Icon(Icons.refresh),
+                      ),
+                    ],
                   ),
-                  Spacer(),
-                  FloatingActionButton.small(
-                    onPressed: _isReconnecting ? null : _attemptReconnection,
-                    tooltip: 'Retry Connection',
-                    child: const Icon(Icons.refresh),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Use facial recognition for quick and secure attendance tracking',
+                    style: TextStyle(fontSize: 16, color: Colors.white60),
+                    textAlign: TextAlign.left,
                   ),
-                  // const SizedBox(height: 8),
-                  // const Text(
-                  //   'Use facial recognition for quick and secure attendance tracking',
-                  //   style: TextStyle(fontSize: 16, color: Colors.grey),
-                  //   textAlign: TextAlign.center,
-                  // ),
                 ],
               ),
             ),
           ),
 
           DailyAttendanceCard(
-            checkInCount: 5, // ambil dari Firestore misalnya
-            checkOutCount: 2, // ambil dari Firestore juga
+            checkInCount: 0, // ambil dari Firestore misalnya
+            checkOutCount: 0, // ambil dari Firestore juga
             onSeeAll: () {
               Navigator.push(
                 context,
@@ -327,99 +333,148 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
 
-          ElevatedButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AttendanceHistoryScreen(),
+          GridView.count(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 15.0,
+            ),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2, // 2 columns
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: 1.8,
+            children: [
+              // 1. Check In (Primary Action - Green)
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const AttendanceScreen(mode: AttendanceMode.checkOut),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green.shade600,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.all(16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  elevation: 5,
                 ),
-              );
-            },
-            icon: const Icon(Icons.history),
-            label: const Text('View History', style: TextStyle(fontSize: 18)),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-          ),
-
-          const SizedBox(height: 24),
-
-          // Action Buttons
-          ElevatedButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const AttendanceScreen(mode: AttendanceMode.checkIn),
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Decreased icon size slightly for smaller container
+                    Icon(Icons.person_add_alt_1_rounded, size: 40),
+                    SizedBox(height: 8), // Decreased spacing
+                    Text(
+                      'Check In',
+                      style: TextStyle(
+                        fontSize: 18, // Decreased font size slightly
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-              );
-            },
-            icon: const Icon(Icons.login),
-            label: const Text('Check In', style: TextStyle(fontSize: 18)),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
               ),
-            ),
-          ),
 
-          const SizedBox(height: 16),
-
-          ElevatedButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      const AttendanceScreen(mode: AttendanceMode.checkOut),
+              // 2. Check Out (Secondary Primary Action - Red)
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const AttendanceScreen(mode: AttendanceMode.checkOut),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red.shade600,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.all(16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  elevation: 5,
                 ),
-              );
-            },
-            icon: const Icon(Icons.logout),
-            label: const Text('Check Out', style: TextStyle(fontSize: 18)),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.person_remove_alt_1_rounded, size: 40),
+                    SizedBox(height: 8),
+                    Text(
+                      'Check Out',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
 
-          const SizedBox(height: 16),
-
-          // Action Buttons
-          ElevatedButton.icon(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
-              );
-            },
-            icon: const Icon(Icons.exit_to_app_rounded),
-            label: const Text('Log Out', style: TextStyle(fontSize: 18)),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.green,
-              foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+              // 3. View History (Utility Action - Standard Blue/Accent)
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AttendanceHistoryScreen(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue.shade700,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.all(16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.list_alt_rounded, size: 40),
+                    SizedBox(height: 8),
+                    Text('View History', style: TextStyle(fontSize: 18)),
+                  ],
+                ),
               ),
-            ),
-          ),
 
-          const SizedBox(height: 24),
+              // 4. Log Out (Utility Action - Light Gray/Neutral)
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey.shade400,
+                  foregroundColor: Colors.black87,
+                  padding: const EdgeInsets.all(16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.exit_to_app_rounded, size: 40),
+                    SizedBox(height: 8),
+                    Text('Log Out', style: TextStyle(fontSize: 18)),
+                  ],
+                ),
+              ),
+            ],
+          ),
 
           // Enhanced Status Card
           Card(

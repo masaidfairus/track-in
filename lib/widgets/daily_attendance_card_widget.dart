@@ -6,74 +6,112 @@ class DailyAttendanceCard extends StatelessWidget {
   final VoidCallback onSeeAll;
 
   const DailyAttendanceCard({
-    Key? key,
+    super.key,
     required this.checkInCount,
     required this.checkOutCount,
     required this.onSeeAll,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      margin: const EdgeInsets.all(16),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Header
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  "Today's Attendance",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                TextButton(onPressed: onSeeAll, child: const Text("See All")),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(
-              // otomatis ambil tanggal hari ini
-              "${DateTime.now().toLocal().toString().split(' ')[0]}",
-              style: const TextStyle(color: Colors.grey),
-            ),
-            const SizedBox(height: 16),
-
-            // Numbers Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildStat("Check In", checkInCount, Colors.green),
-                Container(height: 40, width: 1, color: Colors.grey.shade300),
-                _buildStat("Check Out", checkOutCount, Colors.red),
-              ],
-            ),
-          ],
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        // 🎨 Gradient background
+        gradient: LinearGradient(
+          colors: [Colors.white, Colors.grey.shade100],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-      ),
-    );
-  }
-
-  Widget _buildStat(String label, int value, Color color) {
-    return Column(
-      children: [
-        Text(
-          label,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-        ),
-        const SizedBox(height: 6),
-        Text(
-          "$value",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: color,
+        // ✨ Drop shadow
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            spreadRadius: 1,
+            blurRadius: 8,
+            offset: const Offset(0, 4),
           ),
-        ),
-      ],
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                "Today's Attendance",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              GestureDetector(
+                onTap: onSeeAll,
+                child: const Text(
+                  "See All",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            DateTime.now().toString().split(" ")[0], // show today's date
+            style: const TextStyle(color: Colors.grey),
+          ),
+          const SizedBox(height: 16),
+
+          // Content: Check In & Check Out
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // ✅ Check In
+              Column(
+                children: [
+                  const Icon(
+                    Icons.check_circle_outline,
+                    color: Colors.green,
+                    size: 28,
+                  ), // icon
+                  const SizedBox(height: 6),
+                  const Text("Check In"),
+                  const SizedBox(height: 4),
+                  Text(
+                    "$checkInCount",
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                ],
+              ),
+              Container(width: 2, height: 60, color: Colors.grey.shade300),
+              // 🚪 Check Out
+              Column(
+                children: [
+                  const Icon(Icons.do_disturb_on_outlined , color: Colors.red, size: 28), // icon
+                  const SizedBox(height: 6),
+                  const Text("Check Out"),
+                  const SizedBox(height: 4),
+                  Text(
+                    "$checkOutCount",
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
