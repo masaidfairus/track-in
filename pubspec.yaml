@@ -20,6 +20,7 @@ dependencies:
   path_provider: ^2.1.1
   intl: ^0.18.1
   google_fonts: ^6.3.2
+  rename_app: ^1.6.5
   # Hapus google_mlkit_face_detection karena sudah ada di google_ml_kit
 
 dev_dependencies:

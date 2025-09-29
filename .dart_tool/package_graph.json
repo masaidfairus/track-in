@@ -17,7 +17,8 @@
         "google_ml_kit",
         "intl",
         "path_provider",
-        "permission_handler"
+        "permission_handler",
+        "rename_app"
       ],
       "devDependencies": [
         "flutter_lints",
@@ -86,6 +87,14 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "rename_app",
+      "version": "1.6.5",
+      "dependencies": [
+        "flutter",
+        "xml"
       ]
     },
     {
@@ -304,6 +313,15 @@
         "stream_channel",
         "string_scanner",
         "term_glyph"
+      ]
+    },
+    {
+      "name": "xml",
+      "version": "6.6.1",
+      "dependencies": [
+        "collection",
+        "meta",
+        "petitparser"
       ]
     },
     {
@@ -674,6 +692,14 @@
       "dependencies": [
         "source_span",
         "string_scanner"
+      ]
+    },
+    {
+      "name": "petitparser",
+      "version": "7.0.1",
+      "dependencies": [
+        "collection",
+        "meta"
       ]
     },
     {

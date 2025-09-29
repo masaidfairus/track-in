@@ -352,14 +352,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          const AttendanceScreen(mode: AttendanceMode.checkOut),
+                          const AttendanceScreen(mode: AttendanceMode.checkIn),
                     ),
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.green.shade600,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(13),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -396,7 +396,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red.shade600,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(13),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -431,7 +431,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue.shade700,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(13),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -459,7 +459,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey.shade400,
                   foregroundColor: Colors.black87,
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(13),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
