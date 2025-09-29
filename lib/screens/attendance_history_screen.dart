@@ -122,6 +122,9 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
           title: Row(
             children: [
               Icon(
@@ -250,22 +253,18 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
             Text(
               'Face Size: ${faceData['boundingBox']['width'].toInt()} x ${faceData['boundingBox']['height'].toInt()}',
             ),
-
           if (faceData['headEulerAngleY'] != null)
             Text(
               'Head Rotation: ${faceData['headEulerAngleY'].toStringAsFixed(1)}°',
             ),
-
           if (faceData['smilingProbability'] != null)
             Text(
               'Smiling: ${(faceData['smilingProbability'] * 100).toStringAsFixed(1)}%',
             ),
-
           if (faceData['leftEyeOpenProbability'] != null)
             Text(
               'Left Eye Open: ${(faceData['leftEyeOpenProbability'] * 100).toStringAsFixed(1)}%',
             ),
-
           if (faceData['rightEyeOpenProbability'] != null)
             Text(
               'Right Eye Open: ${(faceData['rightEyeOpenProbability'] * 100).toStringAsFixed(1)}%',
@@ -294,10 +293,19 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Attendance History'),
-        backgroundColor: Color.fromRGBO(56, 56, 150, 1),
+        backgroundColor: const Color.fromRGBO(56, 56, 150, 1),
         foregroundColor: Colors.white,
-        elevation: 2,
+        elevation: 4,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
+        ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              // TODO: implement search
+            },
+          ),
           PopupMenuButton<String>(
             icon: const Icon(Icons.more_vert),
             onSelected: (String value) {
@@ -328,95 +336,91 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
       body: Column(
         children: [
           // Date and Filter Controls
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 1,
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
+          Card(
+            margin: const EdgeInsets.all(12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
             ),
-            child: Column(
-              children: [
-                // Date Selector
-                Row(
-                  children: [
-                    const Icon(Icons.calendar_today, color: Colors.blue),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: _selectDate,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 12,
-                            horizontal: 16,
+            elevation: 3,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  // Date Selector
+                  GestureDetector(
+                    onTap: _selectDate,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12,
+                        horizontal: 16,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey[300]!),
+                        borderRadius: BorderRadius.circular(30),
+                        color: Colors.grey[100],
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            DateFormat(
+                              'EEEE, dd MMM yyyy',
+                            ).format(_selectedDate),
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey[300]!),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                DateFormat(
-                                  'EEEE, dd MMM yyyy',
-                                ).format(_selectedDate),
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                              const Icon(Icons.arrow_drop_down),
-                            ],
-                          ),
-                        ),
+                          const Icon(Icons.calendar_today, color: Colors.blue),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
 
-                const SizedBox(height: 12),
+                  const SizedBox(height: 12),
 
-                // Filter Selector
-                Row(
-                  children: [
-                    const Icon(Icons.filter_list, color: Colors.blue),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: DropdownButton<String>(
-                        value: _selectedFilter,
-                        isExpanded: true,
-                        items: ['All', 'Check In', 'Check Out']
-                            .map(
-                              (String value) => DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: (String? newValue) {
-                          if (newValue != null) {
-                            setState(() {
-                              _selectedFilter = newValue;
-                            });
-                          }
-                        },
+                  // Segmented Filter
+                  ToggleButtons(
+                    borderRadius: BorderRadius.circular(30),
+                    isSelected: [
+                      _selectedFilter == 'All',
+                      _selectedFilter == 'Check In',
+                      _selectedFilter == 'Check Out',
+                    ],
+                    onPressed: (index) {
+                      setState(() {
+                        _selectedFilter = [
+                          'All',
+                          'Check In',
+                          'Check Out',
+                        ][index];
+                      });
+                    },
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text("All"),
                       ),
-                    ),
-                  ],
-                ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text("Check In"),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text("Check Out"),
+                      ),
+                    ],
+                  ),
 
-                const SizedBox(height: 8),
+                  const SizedBox(height: 8),
 
-                // Summary
-                Text(
-                  _getAttendanceSummary(),
-                  style: const TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-              ],
+                  // Summary
+                  Text(
+                    _getAttendanceSummary(),
+                    style: const TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
           ),
 
@@ -476,70 +480,33 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
       itemBuilder: (context, index) {
         AttendanceRecord record = records[index];
         return Card(
-          elevation: 2,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          elevation: 3,
           margin: const EdgeInsets.only(bottom: 12),
           child: ListTile(
             contentPadding: const EdgeInsets.all(16),
             leading: CircleAvatar(
+              radius: 28,
               backgroundColor: record.type == AttendanceType.checkIn
-                  ? Colors.green
-                  : Colors.red,
+                  ? Colors.green.withOpacity(0.8)
+                  : Colors.red.withOpacity(0.8),
               child: Icon(
                 record.type == AttendanceType.checkIn
                     ? Icons.login
                     : Icons.logout,
                 color: Colors.white,
+                size: 24,
               ),
             ),
-            title: Row(
-              children: [
-                Text(
-                  record.type == AttendanceType.checkIn
-                      ? 'Check In'
-                      : 'Check Out',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 2,
-                  ),
-                  decoration: BoxDecoration(
-                    color:
-                        (record.type == AttendanceType.checkIn
-                                ? Colors.green
-                                : Colors.red)
-                            .withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    DateFormat('HH:mm:ss').format(record.timestamp),
-                    style: TextStyle(
-                      color: record.type == AttendanceType.checkIn
-                          ? Colors.green
-                          : Colors.red,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ],
+            title: Text(
+              record.userName,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 8),
-                Text(
-                  record.userName,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
                 const SizedBox(height: 4),
                 Row(
                   children: [
@@ -558,12 +525,12 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
                     padding: const EdgeInsets.only(top: 4),
                     child: Row(
                       children: [
-                        Icon(Icons.verified, size: 14, color: Colors.grey[600]),
+                        Icon(Icons.verified, size: 14, color: Colors.blue[400]),
                         const SizedBox(width: 4),
                         Text(
                           'Confidence: ${(record.confidence! * 100).toStringAsFixed(1)}%',
                           style: TextStyle(
-                            color: Colors.grey[600],
+                            color: Colors.blue[400],
                             fontSize: 12,
                           ),
                         ),
@@ -572,7 +539,24 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
                   ),
               ],
             ),
-            trailing: const Icon(Icons.chevron_right),
+            trailing: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: record.type == AttendanceType.checkIn
+                    ? Colors.green.withOpacity(0.1)
+                    : Colors.red.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                DateFormat('HH:mm:ss').format(record.timestamp),
+                style: TextStyle(
+                  color: record.type == AttendanceType.checkIn
+                      ? Colors.green
+                      : Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             onTap: () => _showRecordDetails(record),
           ),
         );
